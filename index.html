@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CoffeeMate</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="The homepage for the burg bookclub" />
+
+        <script src="https://kit.fontawesome.com/13abfd7f6b.js" crossorigin="anonymous"></script>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+        </style>
+    
+        <!-- global.css contains resets, custom properties, and utility classes -->
+        <link rel="stylesheet" href="/reset.css" />
+        
+        <link rel="stylesheet" href="/index.css" />
+        
+    </head>
+    <body>
+        <header>
+            <div id="name-logo">
+                <p>CoffeeMate</p>
+                <img src="/assets/logo.png"/>
+            </div>
+        </header>
+        <main>
+            <div id="content">
+                <div id="heading">Get daily notifications with latest <br/> news on things you care about the <br/> most.</div>
+                <form>
+                    <div id="personal-info">
+                        <div id="name">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" required>
+                        </div>
+                        <div id="email">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required>
+                        </div>
+                    </div>
+                    <div id="categories">
+                        <div id="sub-heading">Select categories you are interested in receiving news notifications for</div>
+                        <div id="checkboxes">
+                            <input id="science" type="checkbox" name="science" />
+                            <label for="science">Science</label>
+                            <input id="sports" type="checkbox" name="sports" />
+                            <label for="sports">Sports</label>
+                            <input id="entertainment" type="checkbox" name="entertainment" />
+                            <label for="entertainment">Entertainment</label>
+                            <input id="business" type="checkbox" name="business" />
+                            <label for="business">Business</label>
+                            <input id="technology" type="checkbox" name="technology" />
+                            <label for="technology">Technology</label>
+                            <input id="general" type="checkbox" name="general" />
+                            <label for="general">General</label>
+                            <input id="health" type="checkbox" name="health" />
+                            <label for="health">Health</label>
+                        </div>
+                    </div>
+                    <div id="registration">
+                        <button id="sign-up">Sign Up</button>
+                        <div id="terms">You can cancel your subscription at any point of time via the email you receive</div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer>
+            
+        </footer>
+    </body>
+</html>

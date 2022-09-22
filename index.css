@@ -1,0 +1,152 @@
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    background-color: transparent;
+}
+
+#name-logo{
+    display: flex;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}
+#name-logo img{
+    height: 45px;
+    width: 45px;
+    transform: translateY(-5px);
+}
+
+footer{
+    background-color: black;
+    height: 10vh;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/assets/body-image.png') ;
+    background-repeat: no-repeat;
+    background-position: top 0% right 20%;
+    background-size: 90vh;
+}
+
+
+main{
+    flex: auto;
+    padding : 3% 15%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 8vh;
+}
+
+#heading{
+    font-size: 4.3vh;
+    font-weight: 900;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+}
+
+#personal-info{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2vw;
+}
+
+#personal-info input{
+    border: solid 1.3px rgb(0, 0, 0);
+    border-radius: 5px;
+    width: fit-content;
+    padding: 0 10px;
+    height:25px;
+    font-size: 17;
+}
+
+#name , #email{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    font-size: 13.5px;
+}
+
+#sub-heading{
+    font-size: 13.5px;
+}
+
+#checkboxes{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 10px;
+    max-width: 500px;
+}
+
+#checkboxes label {
+    display:block;
+    border:solid 1.3px rgb(0, 0, 0);
+    width: fit-content;
+    padding: 0 15px;
+    height:25px;
+    margin-top:10px;
+    text-align:center;
+    font-size: 17;
+    line-height: 25px;
+    border-radius: 7px;
+    cursor: pointer;
+ }
+ 
+#checkboxes input[type=checkbox] {
+    display: none;
+ }
+
+#checkboxes input:checked + label {
+    border: solid 2px rgb(0, 0, 0);
+    font-weight: bold;
+ }
+
+ #registration{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+ }
+
+ #registration button{
+    text-align: left;
+    border-bottom: 1.5px solid black;
+    width: fit-content;
+ }
+
+ #sign-up{
+    font-size: 20px;
+    align-items: flex-start;
+ }
+
+ #terms{
+    font-size: 12px;
+ }
+
+ @media only screen and (max-width: 900px) {
+    main{
+        background-color: rgba(235, 229, 229, 0.672);
+    }
+ }
+
+ @media only screen and (max-width: 700px) {
+    #name-logo{
+        padding: 10px 0;
+    }
+    #heading{
+        font-weight: 700;
+    }
+ }
