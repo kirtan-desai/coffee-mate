@@ -8,7 +8,7 @@
         <script src="https://kit.fontawesome.com/13abfd7f6b.js" crossorigin="anonymous"></script>
 
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@400;500;600;800&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
         </style>
     
         <!-- global.css contains resets, custom properties, and utility classes -->
@@ -26,7 +26,7 @@
         </header>
         <main>
             <div id="content">
-                <div id="heading">Get daily notifications with latest <br/> news on things you care about the <br/> most.</div>
+                <div id="heading">Get daily notifications with latest news on things you care about the most.</div>
                 <form action="/" method="POST">
                     <div id="personal-info">
                         <div id="name">
@@ -41,31 +41,40 @@
                     <div id="categories">
                         <div id="sub-heading">Select categories you are interested in receiving news notifications for</div>
                         <div id="checkboxes">
-                            <input id="science" type="checkbox" name="science" />
+                            <input id="science" type="checkbox" name="checkbox-categories" />
                             <label for="science">Science</label>
-                            <input id="sports" type="checkbox" name="sports" />
+                            <input id="sports" type="checkbox" name="checkbox-categories" />
                             <label for="sports">Sports</label>
-                            <input id="entertainment" type="checkbox" name="entertainment" />
+                            <input id="entertainment" type="checkbox" name="checkbox-categories" />
                             <label for="entertainment">Entertainment</label>
-                            <input id="business" type="checkbox" name="business" />
+                            <input id="business" type="checkbox" name="checkbox-categories" />
                             <label for="business">Business</label>
-                            <input id="technology" type="checkbox" name="technology" />
+                            <input id="technology" type="checkbox" name="checkbox-categories" />
                             <label for="technology">Technology</label>
-                            <input id="general" type="checkbox" name="general" />
+                            <input id="general" type="checkbox" name="checkbox-categories" />
                             <label for="general">General</label>
-                            <input id="health" type="checkbox" name="health" />
+                            <input id="health" type="checkbox" name="checkbox-categories" />
                             <label for="health">Health</label>
                         </div>
                     </div>
                     <div id="registration">
-                        <button id="sign-up">Sign Up</button>
+                        <button type="submit" value="submit" id="sign-up">Sign Up</button>
                         <div id="terms">You can cancel your subscription at any point of time via the email you receive</div>
                     </div>
                 </form>
             </div>
         </main>
         <footer>
-            
+            <div class="us">
+                <div class="us-name">Kirtan Desai</div>
+                <a href="https://www.linkedin.com/in/desai-kirtan/" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/kirtan-desai" target="_blank"><i class="fa-brands fa-github fa-lg"></i></a>
+            </div>
+            <div class="us">
+                <div class="us-name">Tanvi Khosla</div>
+                <a href="https://www.linkedin.com/in/tanvi-khosla/" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/tanvi-khosla" target="_blank"><i class="fa-brands fa-github fa-lg"></i></a>
+            </div>
         </footer>
     </body>
 </html>
