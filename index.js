@@ -19,7 +19,6 @@ app.post('/',
         if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
         try {
             const data = req.body
-            console.log(data)
             const doc = db.collection('users').doc(data.email);
             await doc.set(data)
             res.send('Record saved successfully')
@@ -31,6 +30,15 @@ app.post('/',
         }
     })
 
+const cronFunc = async() => {
+    const snapshot = await db.collection('users').get();
+    snapshot.forEach((doc) => {
+        fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories'))
+    });
+}
+
+nodeCron.schedule("0 9 * * *", cronFunc)
+
 app.get('/unsubscribe', async (req, res) => {
     const email = req.query.email ? req.query.email : "default"
     try {
@@ -39,15 +47,6 @@ app.get('/unsubscribe', async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message)
     }
-})
-
-const job = nodeCron.schedule("* * * * *", async() => {
-    const snapshot = await db.collection('users').get();
-    snapshot.forEach((doc) => {
-        console.log(doc.get("name"));
-        console.log(doc.get("email"));
-        console.log(doc.get("checkbox-categories"));
-    })
 })
 
 app.listen(3000)
