@@ -86,7 +86,7 @@ const sendNews = async (news_obj, email = process.env.TEST_EMAIL, name = "Kirtan
 }
 
 const fetchNewsAndSendEmail = async (email, name, categories) => {
-    let categories = [...new Set(categories)]
+    categories = [...new Set(categories)]
     let news_obj
     for (let i = 0; i < 5; i++) {
         try {
