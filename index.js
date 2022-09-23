@@ -30,15 +30,6 @@ app.post('/',
         }
     })
 
-const cronFunc = async() => {
-    const snapshot = await db.collection('users').get();
-    snapshot.forEach((doc) => {
-        fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories'))
-    });
-}
-
-nodeCron.schedule("0 9 * * *", cronFunc)
-
 app.get('/unsubscribe', async (req, res) => {
     const email = req.query.email ? req.query.email : "default"
     try {
@@ -48,5 +39,12 @@ app.get('/unsubscribe', async (req, res) => {
         res.status(400).send(error.message)
     }
 })
+
+const cronFunc = async () => {
+    const snapshot = await db.collection('users').get()
+    snapshot.forEach(doc => fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories')))
+}
+
+nodeCron.schedule("0 9 * * *", cronFunc)
 
 app.listen(3000)
