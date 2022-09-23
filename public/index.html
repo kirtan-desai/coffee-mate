@@ -27,7 +27,7 @@
         <main>
             <div id="content">
                 <div id="heading">Get daily notifications with latest news on things you care about the most.</div>
-                <form action="" method="POST">
+                <form action="" method="POST" id="myForm" target="frame" onsubmit="return handleData();">
                     <div id="personal-info">
                         <div id="name">
                             <label for="name">Name</label>
@@ -41,28 +41,30 @@
                     <div id="categories">
                         <div id="sub-heading">Select categories you are interested in receiving news notifications for</div>
                         <div id="checkboxes">
-                            <input id="science" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" class="box" id="science" type="checkbox" name="checkbox-categories" />
                             <label for="science">Science</label>
-                            <input id="sports" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="sports" type="checkbox" name="checkbox-categories" />
                             <label for="sports">Sports</label>
-                            <input id="entertainment" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="entertainment" type="checkbox" name="checkbox-categories" />
                             <label for="entertainment">Entertainment</label>
-                            <input id="business" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="business" type="checkbox" name="checkbox-categories" />
                             <label for="business">Business</label>
-                            <input id="technology" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="technology" type="checkbox" name="checkbox-categories" />
                             <label for="technology">Technology</label>
-                            <input id="general" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="general" type="checkbox" name="checkbox-categories" />
                             <label for="general">General</label>
-                            <input id="health" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="health" type="checkbox" name="checkbox-categories" />
                             <label for="health">Health</label>
+                            <p id="error">Select atleast one news category to receive notifications :)</p>
                         </div>
                     </div>
                     <div id="registration">
-                        <button type="submit" value="submit" id="sign-up">Sign Up</button>
+                        <button type="submit" id="sign-up">Sign Up</button>
                         <div id="terms">You can cancel your subscription at any point of time via the email you receive</div>
                     </div>
                 </form>
             </div>
+            <iframe name="frame"></iframe>
         </main>
         <footer>
             <div class="us">
@@ -78,3 +80,34 @@
         </footer>
     </body>
 </html>
+
+<script>
+
+    function handleData()
+    {
+
+        var form_data = new FormData(document.querySelector("form"));
+        
+        if(!form_data.has("checkbox-categories"))
+        {
+            document.getElementById("error").style.visibility = "visible";
+            return false;
+        }
+        else
+        {
+            var form = document.getElementById("myForm");
+            form.reset();
+        }
+        
+    }
+
+    function checkError(box)
+    {
+        if (box.checked == true)
+        {
+            document.getElementById("error").style.visibility = "hidden";
+        }
+    }
+
+
+</script>
