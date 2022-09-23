@@ -112,7 +112,7 @@ form{
     flex-wrap: wrap;
     column-gap: 15px;
     row-gap: 10px;
-    max-width: 500px;
+    max-width: 550px;
 }
 
 #checkboxes label {
@@ -183,6 +183,15 @@ form{
     font-weight: 450;
     top:5px;
     color: rgb(224, 20, 81);
+    visibility: hidden;
+ }
+
+ #submitted{
+    font-size: 16px;
+    position:relative;
+    bottom :30px;
+    font-weight: 450;
+    color: rgb(42, 155, 28);
     visibility: hidden;
  }
 
