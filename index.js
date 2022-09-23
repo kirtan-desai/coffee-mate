@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator')
 const { initializeApp, cert } = require('firebase-admin/app')
 const { getFirestore } = require('firebase-admin/firestore')
 const { fetchNews, sendNews } = require('./apiHandlers')
+const nodeCron = require("node-cron");
 
 const app = express()
 
@@ -30,6 +31,16 @@ app.post('/',
             res.status(400).send(error.message)
         }
     })
+
+const job = nodeCron.schedule("* * * * *", async function jobYouNeedToExecute() {
+    // Do whatever you want in here. Send email, Make  database backup or download data.
+    const snapshot = await db.collection('users').get();
+    snapshot.forEach((doc) => {
+        console.log(doc.get("name"));
+        console.log(doc.get("email"));
+        console.log(doc.get("checkbox-categories"));
+        });
+});
 
 /*
 TODO: 
