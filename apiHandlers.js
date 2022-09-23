@@ -7,7 +7,7 @@ const fetchNews = async (category = 'general') => {
     const res = await fetch(news_api)
 
     if (!res.ok) throw new Error("News API is not working")
-    
+
     const json = await res.json()
     news = json.articles.slice(0, Math.min(json.articles.length, 5))
 
@@ -22,7 +22,7 @@ const fetchNews = async (category = 'general') => {
     return news_obj
 }
 
-const sendNews = async (news_obj, email = process.env.TEST_EMAIL) => {
+const sendNews = async (news_obj, email = process.env.TEST_EMAIL, name = "Kirtan") => {
     const options = {
         method: 'POST',
         headers: {
@@ -33,8 +33,8 @@ const sendNews = async (news_obj, email = process.env.TEST_EMAIL) => {
         body: JSON.stringify({
             "message": {
                 "to": {
-                    "email": email,
-                    "data": news_obj
+                    email,
+                    "data": { ...news_obj, email, name }
                 },
                 "template": "BNN4HNWFKCMVVPK8NNW6NAQ9F7EF"
             }
@@ -46,4 +46,17 @@ const sendNews = async (news_obj, email = process.env.TEST_EMAIL) => {
     if (!res.ok) throw new Error("Courier API is not working")
 }
 
-module.exports = { fetchNews, sendNews }
+const fetchNewsAndSendEmail = async (email, name, category) => {
+    let news_obj
+    for (let i = 0; i < 5; i++) {
+        try {
+            news_obj = await fetchNews()
+            sendNews(news_obj)
+            break
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+module.exports = fetchNewsAndSendEmail 

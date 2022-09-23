@@ -1,13 +1,9 @@
 const express = require('express')
 const { body, validationResult } = require('express-validator')
-const { initializeApp, cert } = require('firebase-admin/app')
-const { getFirestore } = require('firebase-admin/firestore')
-const { fetchNews, sendNews } = require('./apiHandlers')
+const db = require('./db')
+const fetchNewsAndSendEmail = require('./apiHandlers')
 
 const app = express()
-
-initializeApp({ credential: cert(require('./creds.json')) })
-const db = getFirestore()
 
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
@@ -34,18 +30,13 @@ app.post('/',
         }
     })
 
-const fetchNewsAndSendEmail = async (email) => {
-    let news_obj
-    for (let i = 0; i < 5; i++) {
-        try {
-            news_obj = await fetchNews()
-            sendNews(news_obj)
-            break
-        } catch (err) {
-            console.log(err)
-        }
+app.get('/unsubscribe', async (req, res) => {
+    try {
+        const res = await db.collection('users').doc('DC').delete()
+    } catch {
+
     }
-}
+})
 
 /*
 TODO: 
