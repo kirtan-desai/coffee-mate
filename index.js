@@ -19,7 +19,6 @@ app.post('/',
         if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
         try {
             const data = req.body
-            console.log(data)
             const doc = db.collection('users').doc(data.email);
             await doc.set(data)
             res.send('Record saved successfully')
@@ -31,15 +30,17 @@ app.post('/',
         }
     })
 
-const job = nodeCron.schedule("* * * * *", async function jobYouNeedToExecute() {
-    // Do whatever you want in here. Send email, Make  database backup or download data.
+const cronFunc = async() => {
     const snapshot = await db.collection('users').get();
     snapshot.forEach((doc) => {
-        console.log(doc.get("name"));
-        console.log(doc.get("email"));
-        console.log(doc.get("checkbox-categories"));
-        });
-});
+        console.log("am i working")
+        fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories'))
+    });
+}
+
+module.exports = cronFunc
+
+const job = nodeCron.schedule("0 9 * * *", cronFunc)
 
 app.get('/unsubscribe', async (req, res) => {
     try {
