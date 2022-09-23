@@ -44,4 +44,4 @@ const sendNews = async (news_obj) => {
 
 }
 
-module.exports = {fetchNews, sendNews}
+module.exports = { fetchNews, sendNews }

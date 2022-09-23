@@ -1,30 +1,36 @@
 const express = require('express')
-const { fetchNews, sendNews } = require('./app');
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
+const { fetchNews, sendNews } = require('./apiHandlers');
 
 const app = express()
+
+initializeApp({ credential: cert(require('./creds.json')) })
+const db = getFirestore()
 
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 
 app.post('/', async (req, res) => {
-    console.log("post req made")
-    const data = req.body
-    console.log(data)
-    //store data in firebase
+    try {
+        //validate data before posting
+        console.log(req.body)
+        const doc = db.collection('users').doc(req.body.name);
+        await doc.set(req.body)
+        res.send('Record saved successfully')
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
 })
 
 /*
 TODO: 
-1. set up firebase
-2. app.post('/) for taking in form submission
 3. delete operation for unsubscribe user
 3. set up chron job to send emails
+4. what to do when someone signs up with email which already exists?
+
 */
 
-// app.get("/", (req, res) => {
-//     console.log("Here")
-//     res.send("HEHEHE")
-// })
 
 // (async () => {
 //     sendNews(await fetchNews())
