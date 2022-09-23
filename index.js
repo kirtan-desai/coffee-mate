@@ -31,29 +31,23 @@ app.post('/',
         }
     })
 
-const job = nodeCron.schedule("* * * * *", async function jobYouNeedToExecute() {
-    // Do whatever you want in here. Send email, Make  database backup or download data.
+app.get('/unsubscribe', async (req, res) => {
+    const email = req.query.email ? req.query.email : "default"
+    try {
+        await db.collection('users').doc(email).delete()
+        res.status(200).send(`Unsubscribed ${email} successfully!`)
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
+const job = nodeCron.schedule("* * * * *", async() => {
     const snapshot = await db.collection('users').get();
     snapshot.forEach((doc) => {
         console.log(doc.get("name"));
         console.log(doc.get("email"));
         console.log(doc.get("checkbox-categories"));
-        });
-});
-
-app.get('/unsubscribe', async (req, res) => {
-    try {
-        const res = await db.collection('users').doc('DC').delete()
-    } catch {
-
-    }
+    })
 })
-
-/*
-TODO: 
-3. delete operation for unsubscribe user
-4. update data when user already exists
-5. handle duplicates of checkboxes
-*/
 
 app.listen(3000)
