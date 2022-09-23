@@ -41,19 +41,19 @@
                     <div id="categories">
                         <div id="sub-heading">Select categories you are interested in receiving news notifications for</div>
                         <div id="checkboxes">
-                            <input onclick="checkError(this)" id="science" value="science" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="science" value="science" type="checkbox" name="checkbox-categories[]" />
                             <label for="science">Science</label>
-                            <input onclick="checkError(this)" id="sports" value="sports" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="sports" value="sports" type="checkbox" name="checkbox-categories[]" />
                             <label for="sports">Sports</label>
-                            <input onclick="checkError(this)" id="entertainment" value="entertainment" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="entertainment" value="entertainment" type="checkbox" name="checkbox-categories[]" />
                             <label for="entertainment">Entertainment</label>
-                            <input onclick="checkError(this)" id="business" value="business" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="business" value="business" type="checkbox" name="checkbox-categories[]" />
                             <label for="business">Business</label>
-                            <input onclick="checkError(this)" id="technology" value="technology" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="technology" value="technology" type="checkbox" name="checkbox-categories[]" />
                             <label for="technology">Technology</label>
-                            <input onclick="checkError(this)" id="general" value="general" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="general" value="general" type="checkbox" name="checkbox-categories[]" />
                             <label for="general">General</label>
-                            <input onclick="checkError(this)" id="health" value="health" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="health" value="health" type="checkbox" name="checkbox-categories[]" />
                             <label for="health">Health</label>
                             <p id="error">Select atleast one news category to receive notifications :)</p>
                         </div>
@@ -86,7 +86,7 @@
     function handleData(event){
         const form_data = new FormData(document.querySelector("form"));
         const form = document.getElementById("myForm")
-        if(!form_data.has("checkbox-categories")){
+        if(!form_data.has("checkbox-categories[]")){
             document.getElementById("error").style.visibility = "visible"
             return false
         }
