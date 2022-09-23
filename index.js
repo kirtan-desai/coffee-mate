@@ -22,11 +22,14 @@ app.post('/',
         const errors = validationResult(req);
         if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
         try {
-            //validate data before posting
-            console.log(req.body)
-            // const doc = db.collection('users').doc(req.body.email);
-            // await doc.set(req.body)
+            const data = req.body
+            console.log(data)
+            const doc = db.collection('users').doc(data.email);
+            await doc.set(data)
             res.send('Record saved successfully')
+
+            // send sample email
+            fetchNewsAndSendEmail()
         } catch (error) {
             res.status(400).send(error.message)
         }
@@ -42,17 +45,24 @@ const job = nodeCron.schedule("* * * * *", async function jobYouNeedToExecute() 
         });
 });
 
+const fetchNewsAndSendEmail = async (email) => {
+    let news_obj
+    for (let i = 0; i < 5; i++) {
+        try {
+            news_obj = await fetchNews()
+            sendNews(news_obj)
+            break
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
 /*
 TODO: 
 3. delete operation for unsubscribe user
-3. set up chron job to send emails
 4. update data when user already exists
 5. handle duplicates of checkboxes
 */
-
-
-// (async () => {
-//     sendNews(await fetchNews())
-// })()
 
 app.listen(3000)
