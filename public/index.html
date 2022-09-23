@@ -27,7 +27,7 @@
         <main>
             <div id="content">
                 <div id="heading">Get daily notifications with latest news on things you care about the most.</div>
-                <form action="/" method="POST" id="myForm" target="frame" onsubmit="return handleData()">
+                <form action="/" method="POST" id="myForm"  target="frame" onsubmit="return handleData();">
                     <div id="personal-info">
                         <div id="name">
                             <label for="name">Name</label>
@@ -41,19 +41,19 @@
                     <div id="categories">
                         <div id="sub-heading">Select categories you are interested in receiving news notifications for</div>
                         <div id="checkboxes">
-                            <input onclick="checkError(this)" id="science" value="science" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="science" value="science" type="checkbox" name="checkbox-categories[]" />
                             <label for="science">Science</label>
-                            <input onclick="checkError(this)" id="sports" value="sports" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="sports" value="sports" type="checkbox" name="checkbox-categories[]" />
                             <label for="sports">Sports</label>
-                            <input onclick="checkError(this)" id="entertainment" value="entertainment" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="entertainment" value="entertainment" type="checkbox" name="checkbox-categories[]" />
                             <label for="entertainment">Entertainment</label>
-                            <input onclick="checkError(this)" id="business" value="business" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="business" value="business" type="checkbox" name="checkbox-categories[]" />
                             <label for="business">Business</label>
-                            <input onclick="checkError(this)" id="technology" value="technology" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="technology" value="technology" type="checkbox" name="checkbox-categories[]" />
                             <label for="technology">Technology</label>
-                            <input onclick="checkError(this)" id="general" value="general" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="general" value="general" type="checkbox" name="checkbox-categories[]" />
                             <label for="general">General</label>
-                            <input onclick="checkError(this)" id="health" value="health" type="checkbox" name="checkbox-categories" />
+                            <input onclick="checkError(this)" id="health" value="health" type="checkbox" name="checkbox-categories[]" />
                             <label for="health">Health</label>
                             <p id="error">Select atleast one news category to receive notifications :)</p>
                         </div>
@@ -83,24 +83,27 @@
 
 <script>
 
-    function handleData(){
+    function handleData(event){
         const form_data = new FormData(document.querySelector("form"));
-        
-        if(!form_data.has("checkbox-categories")){
+        const form = document.getElementById("myForm")
+        if(!form_data.has("checkbox-categories[]")){
             document.getElementById("error").style.visibility = "visible"
             return false
         }
         else {
-            const form = document.getElementById("myForm")
-            // form.reset() 
-            return form_data
+            form.submit()
+            form.reset()
+            return false
         }
+        
     }
+
 
     function checkError(box) {
         if (box.checked == true){
             document.getElementById("error").style.visibility = "hidden"
         }
     }
+
 
 </script>
