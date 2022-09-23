@@ -30,28 +30,21 @@ app.post('/',
         }
     })
 
-const cronFunc = async() => {
-    const snapshot = await db.collection('users').get();
-    snapshot.forEach((doc) => {
-        fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories'))
-    });
-}
-
-nodeCron.schedule("0 9 * * *", cronFunc)
-
 app.get('/unsubscribe', async (req, res) => {
+    const email = req.query.email ? req.query.email : "default"
     try {
-        const res = await db.collection('users').doc('DC').delete()
-    } catch {
-
+        await db.collection('users').doc(email).delete()
+        res.status(200).send(`Unsubscribed ${email} successfully!`)
+    } catch (error) {
+        res.status(400).send(error.message)
     }
 })
 
-/*
-TODO: 
-3. delete operation for unsubscribe user
-4. update data when user already exists
-5. handle duplicates of checkboxes
-*/
+const cronFunc = async () => {
+    const snapshot = await db.collection('users').get()
+    snapshot.forEach(doc => fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories')))
+}
+
+nodeCron.schedule("0 9 * * *", cronFunc)
 
 app.listen(3000)
