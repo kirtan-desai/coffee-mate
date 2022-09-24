@@ -47,4 +47,4 @@ const cronFunc = async () => {
 
 nodeCron.schedule("0 9 * * *", cronFunc)
 
-app.listen(3000)
+app.listen(process.env.PORT)
