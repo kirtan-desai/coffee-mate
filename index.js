@@ -46,6 +46,6 @@ const cronFunc = async () => {
     snapshot.forEach(doc => fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories')))
 }
 
-nodeCron.schedule("0 9 * * *", cronFunc)
+nodeCron.schedule("0 9 * * *", cronFunc, {timezone: "America/New_York"})
 
 app.listen(port)
