@@ -28,7 +28,7 @@
         <main>
             <div id="content">
                 <div id="heading">Get daily notifications with latest news on things you care about the most.</div>
-                <form action="/" method="POST" id="myForm"  target="frame" onsubmit="return handleData();">
+                <form action="/" method="POST" id="myForm"  target="frame">
                     <div id="personal-info">
                         <div id="name">
                             <label for="name">Name</label>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div id="registration">
-                        <button type="submit" id="sign-up">Sign Up</button>
+                        <button onclick="return handleData();" type="submit" id="sign-up">Sign Up</button>
                         <div id="terms">You can cancel your subscription at any point of time via the email you receive</div>
                     </div>
                 </form>
