@@ -1,5 +1,8 @@
-# coffee-mate  <img class="logo" src="https://media1.giphy.com/media/Q2T7BXRiDFPJcPoA7Z/giphy.gif?cid=790b761198ce1b92016c1fb2329d54ba65b4bf790fc54827&rid=giphy.gif&ct=s" width="100"/>
 
-Using the CoffeeMate application you can choose to start your morning reading news you are most interested about!
+# CoffeMate 
+<img align="bottom" src="https://media3.giphy.com/media/ZBiPoqqfV9zyAJuWhY/200.webp?cid=ecf05e47vesunpyvsbiwrxody69kjm7dud7iil8h700qqko0&rid=200.webp&ct=s" width="100"/> 
 
-Just subscribe to daily morning emails by entering your email, name and choosing categories you would want to start your morning reading and learning more about. 
+Using the CoffeeMate application you can choose to start your morning reading news you are most interested about!  
+
+Just subscribe to daily morning emails by entering your email, name and choosing categories you would want to start your morning reading and learning more about.  
+
