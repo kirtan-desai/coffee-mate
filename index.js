@@ -25,7 +25,7 @@ app.post('/',
             res.send('Record saved successfully')
 
             // send sample email
-            fetchNewsAndSendEmail()
+            fetchNewsAndSendEmail(data.email, data.name, data.categories)
         } catch (error) {
             res.status(400).send(error.message)
         }
