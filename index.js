@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator')
 const db = require('./db')
 const fetchNewsAndSendEmail = require('./apiHandlers')
 const nodeCron = require("node-cron");
+const port = process.env.PORT || 3000
 
 const app = express()
 
@@ -47,4 +48,4 @@ const cronFunc = async () => {
 
 nodeCron.schedule("0 9 * * *", cronFunc)
 
-app.listen(process.env.PORT)
+app.listen(port)
