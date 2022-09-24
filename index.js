@@ -25,7 +25,7 @@ app.post('/',
             res.send('Record saved successfully')
 
             // send sample email
-            fetchNewsAndSendEmail(data.email, data.name, data.categories)
+            fetchNewsAndSendEmail(data.email, data.name, data["checkbox-categories"])
         } catch (error) {
             res.status(400).send(error.message)
         }

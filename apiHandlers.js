@@ -41,6 +41,7 @@ const fetchNews = async (categories = ['general']) => {
         console.log(error)
         throw new Error(error)
     }
+    
     let news_obj = {}
     for (i in news) {
         news_obj[i] = {}
