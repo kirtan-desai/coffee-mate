@@ -1,8 +1,8 @@
 const express = require('express')
 const { body, validationResult } = require('express-validator')
+require('dotenv').config()
 const db = require('./db')
 const fetchNewsAndSendEmail = require('./apiHandlers')
-const nodeCron = require("node-cron");
 const port = process.env.PORT || 3000
 
 const app = express()
@@ -41,11 +41,9 @@ app.get('/unsubscribe', async (req, res) => {
     }
 })
 
-const cronFunc = async () => {
+app.get('/' + process.env.CRON_ROUTE, async (req, res) => {
     const snapshot = await db.collection('users').get()
     snapshot.forEach(doc => fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories')))
-}
-
-nodeCron.schedule("0 9 * * *", cronFunc, {timezone: "America/New_York"})
+})
 
 app.listen(port)
