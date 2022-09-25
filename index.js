@@ -44,6 +44,7 @@ app.get('/unsubscribe', async (req, res) => {
 app.get('/' + process.env.CRON_ROUTE, async (req, res) => {
     const snapshot = await db.collection('users').get()
     snapshot.forEach(doc => fetchNewsAndSendEmail(doc.get('email'), doc.get('name'), doc.get('checkbox-categories')))
+    res.status(200).send("Emails sent!")
 })
 
 app.listen(port)
