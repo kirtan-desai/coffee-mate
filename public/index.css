@@ -199,15 +199,16 @@ form{
     display: none;
   }
 
- @media only screen and (max-width: 900px) {
+ @media (max-width: 900px) {
+    body{
+        background: none;
+    }
+    
     main{
         background: url('/assets/wave.png');
         background-repeat: no-repeat;
         background-position: top;
         background-size: 170vh;
-    }
-    body{
-        background: none;
     }
 
     form{
