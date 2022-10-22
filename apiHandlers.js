@@ -14,34 +14,20 @@ const fetchSingleCategoryNews = async (category, num) => {
 
 const fetchNews = async (categories = ['general']) => {
     let news = []
+    let NO_OF_NEWS = 5
 
     try {
-        if (categories.length === 1) {
-            news = news.concat(await fetchSingleCategoryNews(categories[0], 5))
-        } else if (categories.length === 2) {
-            news = news.concat(await fetchSingleCategoryNews(categories[0], 3))
-            news = news.concat(await fetchSingleCategoryNews(categories[1], 2))
-        } else if (categories.length === 3) {
-            news = news.concat(await fetchSingleCategoryNews(categories[0], 2))
-            news = news.concat(await fetchSingleCategoryNews(categories[1], 2))
-            news = news.concat(await fetchSingleCategoryNews(categories[2], 1))
-        } else if (categories.length === 4) {
-            news = news.concat(await fetchSingleCategoryNews(categories[0], 2))
-            news = news.concat(await fetchSingleCategoryNews(categories[1], 1))
-            news = news.concat(await fetchSingleCategoryNews(categories[2], 1))
-            news = news.concat(await fetchSingleCategoryNews(categories[3], 1))
-        } else if (categories.length === 5) {
-            news = news.concat(await fetchSingleCategoryNews(categories[0], 1))
-            news = news.concat(await fetchSingleCategoryNews(categories[1], 1))
-            news = news.concat(await fetchSingleCategoryNews(categories[2], 1))
-            news = news.concat(await fetchSingleCategoryNews(categories[3], 1))
-            news = news.concat(await fetchSingleCategoryNews(categories[4], 1))
+        num = 0
+        for (let i = 0; i < categories.length; i++) {
+            num = Math.floor(NO_OF_NEWS / (categories.length - i))
+            NO_OF_NEWS = NO_OF_NEWS - num
+            news = news.concat(await fetchSingleCategoryNews(categories[i], num))
         }
     } catch (error) {
         console.log(error)
         throw new Error(error)
     }
-    
+
     let news_obj = {}
     for (i in news) {
         news_obj[i] = {}
