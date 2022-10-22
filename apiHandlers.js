@@ -14,14 +14,14 @@ const fetchSingleCategoryNews = async (category, num) => {
 
 const fetchNews = async (categories = ['general']) => {
     let news = []
-    let NO_OF_NEWS = 5
+    let newsToSend = 5
 
     try {
-        num = 0
+        newsSent = 0
         for (let i = 0; i < categories.length; i++) {
-            num = Math.floor(NO_OF_NEWS / (categories.length - i))
-            NO_OF_NEWS = NO_OF_NEWS - num
-            news = news.concat(await fetchSingleCategoryNews(categories[i], num))
+            newsSent = Math.floor(newsToSend / (categories.length - i))
+            newsToSend = newsToSend - newsSent
+            news = news.concat(await fetchSingleCategoryNews(categories[i], newsSent))
         }
     } catch (error) {
         console.log(error)
